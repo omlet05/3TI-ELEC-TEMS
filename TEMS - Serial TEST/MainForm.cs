@@ -19,6 +19,7 @@ namespace TEMS___Serial_TEST
     {
         Thread ClientThread;
         string readData = null, sendData = null;
+        int i;
 
 
         public MainForm()
@@ -78,9 +79,7 @@ namespace TEMS___Serial_TEST
             {
                 
                 clientSocket.Connect(ip, port);
-                readData = "Conected to TEMS Server ...\n";
-                //sendData = "#DO";
-                msg();
+                SetText("Connected to new TEMS Server on"+ip+":"+port+".\n");
                 Thread clientThread = new Thread(() => MessageIO(clientSocket));
                 clientThread.IsBackground = true;
                 clientThread.Start();
@@ -96,8 +95,7 @@ namespace TEMS___Serial_TEST
         {
             NetworkStream clientStream = clientSocket.GetStream();
             int buffSize;
-            byte[] inStream = new byte[10025];
-            int i = 0;
+            byte[] inStream = new byte[4069];
 
             while (true)
             {
@@ -107,11 +105,12 @@ namespace TEMS___Serial_TEST
                     if (clientStream.DataAvailable)
                     {
                         buffSize = clientSocket.ReceiveBufferSize;
-                        clientStream.Read(inStream, 0, 10025);
+                        clientStream.Read(inStream, 0, 4069);
                         string returndata = "";
                         returndata = System.Text.Encoding.ASCII.GetString(inStream);
                         readData = "" + returndata;
-                        i = msgsplittcp(i);
+                        msgsplittcp();
+                        inStream = new byte[4069];
 
                         if (sendData != null)
                         {
@@ -135,37 +134,41 @@ namespace TEMS___Serial_TEST
                 this.Invoke(new MethodInvoker(msg));
             else
             {
-                SetText(Environment.NewLine + "=> " + readData);
+                SetText(Environment.NewLine + ">> " + readData);
             }
         }
 
-        private int msgsplittcp(int i)
+        private int msgsplittcp()
         {
-                switch (i)
-                {
-                    case 0:
-                        SetText(Environment.NewLine + "" + readData + " ");
-                        i++;
-                        break;
-                    case 1:
-                        SetText(" Current:" + readData + " ");
-                        i++;
-                        break;
-                    case 2:
+            
+            if(readData.Contains("TEMS"))
+                i = 0;
+            
+            switch (i)
+            {
+                case 0:
+                    SetText(Environment.NewLine + ">>" + readData + " ");
+                    i++;
+                    break;
+                case 1:
+                    SetText(" Current:" + readData + " ");
+                    i++;
+                    break;
+                case 2:
 
-                        SetText(" Max:" + readData + " ");
-                        i++;
-                        break;
+                    SetText(" Max:" + readData + " ");
+                    i++;
+                    break;
 
-                    case 3:
-                        SetText(" Min:" + readData + " ");
-                        i = 0;
-                        break;
-                    default:
-                        SetText(readData + "\n");
-                        break;
-                }
-                readData = "";
+                case 3:
+                    SetText(" Min:" + readData + " ");
+                    i++;
+                    break;
+                default:
+                    SetText(readData + "\n");
+                    break;
+            }
+            readData = "";
             return i;
         } 
          

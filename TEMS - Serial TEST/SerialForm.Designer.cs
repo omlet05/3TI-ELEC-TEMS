@@ -41,14 +41,16 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // writeTextBox
             // 
-            this.writeTextBox.Location = new System.Drawing.Point(111, 202);
+            this.writeTextBox.Location = new System.Drawing.Point(111, 205);
             this.writeTextBox.Name = "writeTextBox";
-            this.writeTextBox.Size = new System.Drawing.Size(298, 80);
+            this.writeTextBox.Size = new System.Drawing.Size(292, 62);
             this.writeTextBox.TabIndex = 0;
             this.writeTextBox.Text = "";
             this.writeTextBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.writeTextBox_MouseDoubleClick);
@@ -64,17 +66,17 @@
             // 
             // sendButton
             // 
-            this.sendButton.Location = new System.Drawing.Point(415, 220);
+            this.sendButton.Location = new System.Drawing.Point(397, 18);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(74, 28);
             this.sendButton.TabIndex = 2;
-            this.sendButton.Text = "sendButton";
+            this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(415, 254);
+            this.clearButton.Location = new System.Drawing.Point(397, 52);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(74, 28);
             this.clearButton.TabIndex = 4;
@@ -84,11 +86,11 @@
             // 
             // newLibeBut
             // 
-            this.newLibeBut.Location = new System.Drawing.Point(28, 220);
+            this.newLibeBut.Location = new System.Drawing.Point(6, 31);
             this.newLibeBut.Name = "newLibeBut";
             this.newLibeBut.Size = new System.Drawing.Size(74, 37);
             this.newLibeBut.TabIndex = 6;
-            this.newLibeBut.Text = "Switch Relay";
+            this.newLibeBut.Text = "Switching Relay";
             this.newLibeBut.UseVisualStyleBackColor = true;
             this.newLibeBut.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -152,17 +154,27 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "COM port:";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.newLibeBut);
+            this.groupBox2.Controls.Add(this.sendButton);
+            this.groupBox2.Controls.Add(this.clearButton);
+            this.groupBox2.Location = new System.Drawing.Point(12, 187);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(477, 95);
+            this.groupBox2.TabIndex = 21;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Command:";
+            // 
             // SerialForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 294);
-            this.Controls.Add(this.newLibeBut);
-            this.Controls.Add(this.clearButton);
-            this.Controls.Add(this.sendButton);
             this.Controls.Add(this.readTextBox);
             this.Controls.Add(this.writeTextBox);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "SerialForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -171,6 +183,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -189,6 +202,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.IO.Ports.SerialPort serialPort;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 
