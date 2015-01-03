@@ -80,7 +80,7 @@ namespace TEMS___Serial_TEST
             try
             {
                 // make sure port isn't open	
-                if (!serialPort.IsOpen)// && !serialPortRead.IsOpen)
+                if (!serialPort.IsOpen)
                 {
 
                     // set status
@@ -159,7 +159,6 @@ namespace TEMS___Serial_TEST
         }
 
 
-
         private void clearButton_Click(object sender, EventArgs e)
         {
             readTextBox.Text = String.Empty;
@@ -171,10 +170,6 @@ namespace TEMS___Serial_TEST
             serialPort.Write("\n");
         }
 
-        private void writeTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
 
 
@@ -221,15 +216,6 @@ namespace TEMS___Serial_TEST
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void readTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
        
     }

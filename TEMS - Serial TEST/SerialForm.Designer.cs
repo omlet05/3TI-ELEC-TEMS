@@ -50,7 +50,6 @@
             this.writeTextBox.Size = new System.Drawing.Size(298, 80);
             this.writeTextBox.TabIndex = 0;
             this.writeTextBox.Text = "";
-            this.writeTextBox.TextChanged += new System.EventHandler(this.writeTextBox_TextChanged);
             this.writeTextBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.writeTextBox_MouseDoubleClick);
             // 
             // readTextBox
@@ -61,7 +60,7 @@
             this.readTextBox.Size = new System.Drawing.Size(378, 169);
             this.readTextBox.TabIndex = 1;
             this.readTextBox.Text = "";
-            this.readTextBox.TextChanged += new System.EventHandler(this.readTextBox_TextChanged);
+            
             // 
             // sendButton
             // 

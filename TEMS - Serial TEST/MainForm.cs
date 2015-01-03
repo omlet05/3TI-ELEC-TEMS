@@ -38,8 +38,6 @@ namespace TEMS___Serial_TEST
         {
             Form frm = new SerialForm();
             frm.Show();
-            this.Enabled = false;
-
         }
 
 
@@ -104,19 +102,21 @@ namespace TEMS___Serial_TEST
                 buffSize = 0;
                 try
                 {
-                    
-                    buffSize = clientSocket.ReceiveBufferSize;
-                    clientStream.Read(inStream, 0, 10025);
-                    string returndata = System.Text.Encoding.ASCII.GetString(inStream);
-                    readData = "" + returndata;
-                    msg();
-                    
-                    if (sendData != null)
+                    if (clientStream.DataAvailable)
                     {
-                        byte[] outStream = System.Text.Encoding.ASCII.GetBytes(sendData);
-                        clientStream.Write(outStream, 0, outStream.Length);
-                        clientStream.Flush();
-                        sendData = null;
+                        buffSize = clientSocket.ReceiveBufferSize;
+                        clientStream.Read(inStream, 0, 10025);
+                        string returndata = System.Text.Encoding.ASCII.GetString(inStream);
+                        readData = "" + returndata;
+                        msg();
+
+                        if (sendData != null)
+                        {
+                            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(sendData);
+                            clientStream.Write(outStream, 0, outStream.Length);
+                            clientStream.Flush();
+                            sendData = null;
+                        }
                     }
                     
                 }
