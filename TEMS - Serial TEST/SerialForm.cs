@@ -58,7 +58,7 @@ namespace TEMS___Serial_TEST
             }
             catch (Exception)
             {
-                MessageBox.Show("Pas de COM disponible.\n Communication série désactivée.");
+                MessageBox.Show("No Com available.\n Com features is disabled.");
                 cboPorts.Visible = false;
                 openPort.Enabled = false;
             }
@@ -70,47 +70,51 @@ namespace TEMS___Serial_TEST
             newLibeBut.Enabled = false;
             closePort.Enabled = false;
             cboPorts.Enabled = true;
-
-            WichCom.Text = serialPort.PortName.ToString();
         }     
 
         private void openPort_Click(object sender, EventArgs e)
         {
-
-            try
+            if (!string.IsNullOrWhiteSpace(WichCom.Text))
             {
-                // make sure port isn't open	
-                if (!serialPort.IsOpen)
+                try
                 {
-
-                    // set status
-                    readTextBox.Text = serialPort.PortName + " est prêt!";
-                    //open serial port 
-                    try {
-                        serialPort.Open();
-                    }
-                    catch (Exception ex)
+                    // make sure port isn't open	
+                    if (!serialPort.IsOpen)
                     {
-                        MessageBox.Show("Erreur durant l'ouverture du port: {0}", ex.Message);
+
+                        // set status
+                        readTextBox.Text = serialPort.PortName + " is ready!";
+                        //open serial port 
+                        try
+                        {
+                            serialPort.Open();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Erreur durant l'ouverture du port: {0}", ex.Message);
+                        }
+
+
+                        // prevent reinitiation with button
+                        openPort.Enabled = false;
+                        //disable buttons
+                        sendButton.Enabled = true;
+                        newLibeBut.Enabled = true;
+                        closePort.Enabled = true;
+                        cboPorts.Enabled = false;
                     }
-
-
-                    // prevent reinitiation with button
-                    openPort.Enabled = false;
-                    //disable buttons
-                    sendButton.Enabled = true;
-                    newLibeBut.Enabled = true;
-                    closePort.Enabled = true;
-                    cboPorts.Enabled = false;
+                    else
+                        readTextBox.Text = "The port is already used.\n";
                 }
-                else
-                    readTextBox.Text = "Le port n'est pas ouvert.";
+                catch (UnauthorizedAccessException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (UnauthorizedAccessException ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("No port Selected!");
             }
-
         }
 
 
@@ -170,29 +174,12 @@ namespace TEMS___Serial_TEST
             serialPort.Write("\n");
         }
 
-
-
-
-        private void getHostIP()
-        {
-            System.Net.IPHostEntry _IPHostEntry = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
-            foreach (System.Net.IPAddress _IPAddress in _IPHostEntry.AddressList)
-            {
-                if (_IPAddress.AddressFamily.ToString() == "InterNetwork")
-                    localIP = _IPAddress.ToString();
-            }
-        }
-
         private void cboPorts_SelectedIndexChanged(object sender, EventArgs e)
         {
             serialPort.PortName = Convert.ToString(cboPorts.Text);
             WichCom.Text = Convert.ToString(cboPorts.Text);
         }
 
-        private void WichCom_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
 
         private void closePort_Click(object sender, EventArgs e)
         {
@@ -202,18 +189,6 @@ namespace TEMS___Serial_TEST
             openPort.Enabled = true;
             closePort.Enabled = false;
             cboPorts.Enabled = true;
-        }
-
-        private void listenBouttonClick(object sender, EventArgs e)
-        {
-            try{
-                getHostIP();
-            readTextBox.AppendText("IP du serveur: "+localIP+".\n");
-            }
-            catch (Exception except)
-            {
-                MessageBox.Show(except.Message);
-            }
         }
 
 

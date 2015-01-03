@@ -34,12 +34,12 @@
             this.sendButton = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
             this.newLibeBut = new System.Windows.Forms.Button();
-            this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.closePort = new System.Windows.Forms.Button();
             this.WichCom = new System.Windows.Forms.TextBox();
             this.cboPorts = new System.Windows.Forms.ComboBox();
             this.openPort = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +60,6 @@
             this.readTextBox.Size = new System.Drawing.Size(378, 169);
             this.readTextBox.TabIndex = 1;
             this.readTextBox.Text = "";
-            
             // 
             // sendButton
             // 
@@ -92,10 +91,6 @@
             this.newLibeBut.UseVisualStyleBackColor = true;
             this.newLibeBut.Click += new System.EventHandler(this.button1_Click);
             // 
-            // serialPort
-            // 
-            this.serialPort.PortName = "COM3";
-            // 
             // closePort
             // 
             this.closePort.Location = new System.Drawing.Point(12, 49);
@@ -108,13 +103,11 @@
             // 
             // WichCom
             // 
-            this.WichCom.Enabled = false;
             this.WichCom.Location = new System.Drawing.Point(12, 76);
             this.WichCom.Name = "WichCom";
             this.WichCom.ReadOnly = true;
             this.WichCom.Size = new System.Drawing.Size(72, 20);
             this.WichCom.TabIndex = 16;
-            this.WichCom.TextChanged += new System.EventHandler(this.WichCom_TextChanged);
             // 
             // cboPorts
             // 
@@ -123,7 +116,6 @@
             this.cboPorts.Name = "cboPorts";
             this.cboPorts.Size = new System.Drawing.Size(72, 21);
             this.cboPorts.TabIndex = 15;
-            this.cboPorts.Visible = false;
             this.cboPorts.SelectedIndexChanged += new System.EventHandler(this.cboPorts_SelectedIndexChanged);
             // 
             // openPort
@@ -180,12 +172,12 @@
         private System.Windows.Forms.Button sendButton;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Button newLibeBut;
-        private System.IO.Ports.SerialPort serialPort;
         private System.Windows.Forms.Button closePort;
         private System.Windows.Forms.TextBox WichCom;
         private System.Windows.Forms.ComboBox cboPorts;
         private System.Windows.Forms.Button openPort;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.IO.Ports.SerialPort serialPort;
     }
 }
 
