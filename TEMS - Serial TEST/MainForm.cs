@@ -11,13 +11,12 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Net;
 using System.Collections;
+using System.Text.RegularExpressions;
 
 namespace TEMS___Serial_TEST
 {
     public partial class MainForm : Form
     {
-        public static Hashtable clientsList = new Hashtable(); 
-        NetworkStream serverStream = default(NetworkStream);
         Thread ClientThread;
         string readData = null, sendData = null;
 
@@ -51,6 +50,7 @@ namespace TEMS___Serial_TEST
             else
                 Client(ip, port);       
         }
+
 
         private void Client(string ip, int port) {        
             
@@ -87,7 +87,7 @@ namespace TEMS___Serial_TEST
             }
             catch (Exception ex)
             {
-                SetText("Erreur: " + ex.Message + "\n");
+                SetText("\nErreur: " + ex.Message + "\n");
             }
         }
 
@@ -96,6 +96,7 @@ namespace TEMS___Serial_TEST
             NetworkStream clientStream = clientSocket.GetStream();
             int buffSize;
             byte[] inStream = new byte[10025];
+            int i = 0;
 
             while (true)
             {
@@ -108,7 +109,7 @@ namespace TEMS___Serial_TEST
                         clientStream.Read(inStream, 0, 10025);
                         string returndata = System.Text.Encoding.ASCII.GetString(inStream);
                         readData = "" + returndata;
-                        msg();
+                        i = msgsplittcp(i);
 
                         if (sendData != null)
                         {
@@ -122,7 +123,7 @@ namespace TEMS___Serial_TEST
                 }
                 catch(Exception e)
                 {
-                    SetText("Erreur: " + e.Message + "\n");
+                    SetText("\nErreur: " + e.Message + "\n");
                 }
 
                 /*if (buffSize == 0)
@@ -132,13 +133,40 @@ namespace TEMS___Serial_TEST
                 }*/
             }
         }
-
         private void msg()
         {
             if (this.InvokeRequired)
                 this.Invoke(new MethodInvoker(msg));
             else
-                SetText(Environment.NewLine+"=> " + readData);
+            {
+             
+                SetText(Environment.NewLine + "=> " + readData);
+            }
+        }
+
+        private int msgsplittcp(int i)
+        {
+                switch (i)
+                {
+                    case 0:
+                        SetText(Environment.NewLine + " Current:" + readData + " ");
+                        i++;
+                        break;
+                    case 1:
+
+                        SetText(" Max:" + readData + " ");
+                        i++;
+                        break;
+
+                    case 2:
+                        SetText(" Min:" + readData + " ");
+                        i = 0;
+                        break;
+                    default:
+                        SetText(readData + "\n");
+                        break;
+                }
+            return i;
         } 
          
         
@@ -169,6 +197,21 @@ namespace TEMS___Serial_TEST
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            bool relais = true;
+            if (relais)
+            {
+                sendData = "#DO";
+                relais = false;
+            }
+            else {
+                sendData = "#DC";
+                relais = true;
+            }
+
         }
        
     }
