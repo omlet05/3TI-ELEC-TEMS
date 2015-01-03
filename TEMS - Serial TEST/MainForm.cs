@@ -17,7 +17,6 @@ namespace TEMS___Serial_TEST
     public partial class MainForm : Form
     {
         public static Hashtable clientsList = new Hashtable(); 
-        System.Net.Sockets.TcpClient clientSocket = new System.Net.Sockets.TcpClient();
         NetworkStream serverStream = default(NetworkStream);
         Thread ClientThread;
         string readData = null, sendData = null;
@@ -50,9 +49,7 @@ namespace TEMS___Serial_TEST
             int port = Convert.ToInt32(portUpDown.Value);
            
             if (!checkIfCompletedOrNotBlank(ip))
-            {
                 SetText("IP ou port non valide.\n");
-            }
             else
                 Client(ip, port);       
         }
@@ -77,19 +74,18 @@ namespace TEMS___Serial_TEST
 
         private void NewClient(String ip, int port)
         {
-
+            System.Net.Sockets.TcpClient clientSocket = new System.Net.Sockets.TcpClient();
             try
             {
-                clientSocket.Connect(ip, port);
-                readData = "Conected to TEMS Server ...";
                 
+                clientSocket.Connect(ip, port);
+                readData = "Conected to TEMS Server ...\n";
+                //sendData = "#DO";
                 msg();
-                Thread ct1Thread = new Thread(setMessage);
-                Thread ct2Thread = new Thread(getMessage);
-                ct1Thread.IsBackground = true;
-                ct2Thread.IsBackground = true;
-                ct1Thread.Start();
-                ct2Thread.Start();
+                Thread clientThread = new Thread(() => MessageIO(clientSocket));
+                clientThread.IsBackground = true;
+                clientThread.Start();
+                
             }
             catch (Exception ex)
             {
@@ -97,34 +93,43 @@ namespace TEMS___Serial_TEST
             }
         }
 
-        private void setMessage()
+        private void MessageIO(TcpClient clientSocket)
         {
-            serverStream = clientSocket.GetStream();
-            while (true )
-            {
-                if (sendData != null)
-                {
-                    
-                    byte[] outStream = System.Text.Encoding.ASCII.GetBytes(sendData);
-                    serverStream.Write(outStream, 0, outStream.Length);
-                    serverStream.Flush();
-                }
-            }
-        }
-        
-        private void getMessage()
-        {
-            serverStream = clientSocket.GetStream();
+            NetworkStream clientStream = clientSocket.GetStream();
+            int buffSize;
+            byte[] inStream = new byte[10025];
+
             while (true)
             {
-                
-                int buffSize = 0;
-                byte[] inStream = new byte[10025];
-                buffSize = clientSocket.ReceiveBufferSize;
-                serverStream.Read(inStream, 0, buffSize);
-                string returndata = System.Text.Encoding.ASCII.GetString(inStream);
-                readData = "" + returndata;
-                msg();
+                buffSize = 0;
+                try
+                {
+                    
+                    buffSize = clientSocket.ReceiveBufferSize;
+                    clientStream.Read(inStream, 0, 10025);
+                    string returndata = System.Text.Encoding.ASCII.GetString(inStream);
+                    readData = "" + returndata;
+                    msg();
+                    
+                    if (sendData != null)
+                    {
+                        byte[] outStream = System.Text.Encoding.ASCII.GetBytes(sendData);
+                        clientStream.Write(outStream, 0, outStream.Length);
+                        clientStream.Flush();
+                        sendData = null;
+                    }
+                    
+                }
+                catch(Exception e)
+                {
+                    SetText("Erreur: " + e.Message + "\n");
+                }
+
+                if (buffSize == 0)
+                {
+                    SetText("Client Disconnected\n");
+                    break;
+                }
             }
         }
 
