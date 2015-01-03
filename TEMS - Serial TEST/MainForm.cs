@@ -125,11 +125,11 @@ namespace TEMS___Serial_TEST
                     SetText("Erreur: " + e.Message + "\n");
                 }
 
-                if (buffSize == 0)
+                /*if (buffSize == 0)
                 {
                     SetText("Client Disconnected\n");
                     break;
-                }
+                }*/
             }
         }
 
