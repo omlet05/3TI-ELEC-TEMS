@@ -40,6 +40,7 @@
             this.openPort = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +64,7 @@
             // 
             // sendButton
             // 
-            this.sendButton.Location = new System.Drawing.Point(415, 213);
+            this.sendButton.Location = new System.Drawing.Point(415, 220);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(74, 28);
             this.sendButton.TabIndex = 2;
@@ -73,9 +74,9 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(12, 247);
+            this.clearButton.Location = new System.Drawing.Point(415, 254);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(93, 35);
+            this.clearButton.Size = new System.Drawing.Size(74, 28);
             this.clearButton.TabIndex = 4;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
@@ -83,17 +84,17 @@
             // 
             // newLibeBut
             // 
-            this.newLibeBut.Location = new System.Drawing.Point(415, 247);
+            this.newLibeBut.Location = new System.Drawing.Point(28, 220);
             this.newLibeBut.Name = "newLibeBut";
-            this.newLibeBut.Size = new System.Drawing.Size(74, 28);
+            this.newLibeBut.Size = new System.Drawing.Size(74, 37);
             this.newLibeBut.TabIndex = 6;
-            this.newLibeBut.Text = "\\n";
+            this.newLibeBut.Text = "Switch Relay";
             this.newLibeBut.UseVisualStyleBackColor = true;
             this.newLibeBut.Click += new System.EventHandler(this.button1_Click);
             // 
             // closePort
             // 
-            this.closePort.Location = new System.Drawing.Point(12, 49);
+            this.closePort.Location = new System.Drawing.Point(6, 46);
             this.closePort.Name = "closePort";
             this.closePort.Size = new System.Drawing.Size(72, 21);
             this.closePort.TabIndex = 17;
@@ -103,7 +104,7 @@
             // 
             // WichCom
             // 
-            this.WichCom.Location = new System.Drawing.Point(12, 76);
+            this.WichCom.Location = new System.Drawing.Point(6, 107);
             this.WichCom.Name = "WichCom";
             this.WichCom.ReadOnly = true;
             this.WichCom.Size = new System.Drawing.Size(72, 20);
@@ -112,7 +113,7 @@
             // cboPorts
             // 
             this.cboPorts.FormattingEnabled = true;
-            this.cboPorts.Location = new System.Drawing.Point(12, 102);
+            this.cboPorts.Location = new System.Drawing.Point(6, 133);
             this.cboPorts.Name = "cboPorts";
             this.cboPorts.Size = new System.Drawing.Size(72, 21);
             this.cboPorts.TabIndex = 15;
@@ -120,7 +121,7 @@
             // 
             // openPort
             // 
-            this.openPort.Location = new System.Drawing.Point(12, 22);
+            this.openPort.Location = new System.Drawing.Point(6, 19);
             this.openPort.Name = "openPort";
             this.openPort.Size = new System.Drawing.Size(72, 21);
             this.openPort.TabIndex = 14;
@@ -130,16 +131,26 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cboPorts);
             this.groupBox1.Controls.Add(this.openPort);
             this.groupBox1.Controls.Add(this.closePort);
             this.groupBox1.Controls.Add(this.WichCom);
-            this.groupBox1.Location = new System.Drawing.Point(15, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(90, 136);
+            this.groupBox1.Size = new System.Drawing.Size(90, 169);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SERIAL";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 81);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "COM port:";
             // 
             // SerialForm
             // 
@@ -156,8 +167,7 @@
             this.Name = "SerialForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TEMS - Serial Client";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Text = "TEMS - Manager -  Serial Client";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -178,6 +188,7 @@
         private System.Windows.Forms.Button openPort;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.IO.Ports.SerialPort serialPort;
+        private System.Windows.Forms.Label label1;
     }
 }
 

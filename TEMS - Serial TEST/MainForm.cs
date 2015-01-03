@@ -72,6 +72,7 @@ namespace TEMS___Serial_TEST
 
         private void NewClient(String ip, int port)
         {
+
             System.Net.Sockets.TcpClient clientSocket = new System.Net.Sockets.TcpClient();
             try
             {
@@ -102,12 +103,13 @@ namespace TEMS___Serial_TEST
             {
                 buffSize = 0;
                 try
-                {
+                {  
                     if (clientStream.DataAvailable)
                     {
                         buffSize = clientSocket.ReceiveBufferSize;
                         clientStream.Read(inStream, 0, 10025);
-                        string returndata = System.Text.Encoding.ASCII.GetString(inStream);
+                        string returndata = "";
+                        returndata = System.Text.Encoding.ASCII.GetString(inStream);
                         readData = "" + returndata;
                         i = msgsplittcp(i);
 
@@ -125,12 +127,6 @@ namespace TEMS___Serial_TEST
                 {
                     SetText("\nErreur: " + e.Message + "\n");
                 }
-
-                /*if (buffSize == 0)
-                {
-                    SetText("Client Disconnected\n");
-                    break;
-                }*/
             }
         }
         private void msg()
@@ -139,7 +135,6 @@ namespace TEMS___Serial_TEST
                 this.Invoke(new MethodInvoker(msg));
             else
             {
-             
                 SetText(Environment.NewLine + "=> " + readData);
             }
         }
@@ -149,16 +144,20 @@ namespace TEMS___Serial_TEST
                 switch (i)
                 {
                     case 0:
-                        SetText(Environment.NewLine + " Current:" + readData + " ");
+                        SetText(Environment.NewLine + "" + readData + " ");
                         i++;
                         break;
                     case 1:
+                        SetText(" Current:" + readData + " ");
+                        i++;
+                        break;
+                    case 2:
 
                         SetText(" Max:" + readData + " ");
                         i++;
                         break;
 
-                    case 2:
+                    case 3:
                         SetText(" Min:" + readData + " ");
                         i = 0;
                         break;
@@ -166,6 +165,7 @@ namespace TEMS___Serial_TEST
                         SetText(readData + "\n");
                         break;
                 }
+                readData = "";
             return i;
         } 
          
@@ -199,20 +199,7 @@ namespace TEMS___Serial_TEST
             Application.Exit();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            bool relais = true;
-            if (relais)
-            {
-                sendData = "#DO";
-                relais = false;
-            }
-            else {
-                sendData = "#DC";
-                relais = true;
-            }
-
-        }
+        
        
     }
 

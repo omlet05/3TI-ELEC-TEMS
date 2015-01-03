@@ -18,7 +18,7 @@ namespace TEMS___Serial_TEST
         private static string TxString = string.Empty;
         string RxString = string.Empty;
         string localIP = string.Empty;
-
+        bool relais = true;
 
 
         public SerialForm()
@@ -70,6 +70,7 @@ namespace TEMS___Serial_TEST
             newLibeBut.Enabled = false;
             closePort.Enabled = false;
             cboPorts.Enabled = true;
+            newLibeBut.Enabled = false;
         }     
 
         private void openPort_Click(object sender, EventArgs e)
@@ -80,28 +81,27 @@ namespace TEMS___Serial_TEST
                 {
                     // make sure port isn't open	
                     if (!serialPort.IsOpen)
-                    {
-
-                        // set status
-                        readTextBox.Text = serialPort.PortName + " is ready!";
+                    {              
+                        
                         //open serial port 
                         try
                         {
                             serialPort.Open();
+                            readTextBox.Text = serialPort.PortName + " is ready!";
+                            // prevent reinitiation with button
+                            openPort.Enabled = false;
+                            //disable buttons
+                            sendButton.Enabled = true;
+                            newLibeBut.Enabled = true;
+                            closePort.Enabled = true;
+                            cboPorts.Enabled = false;
+                            newLibeBut.Enabled = true;
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show("Erreur durant l'ouverture du port: {0}", ex.Message);
                         }
 
-
-                        // prevent reinitiation with button
-                        openPort.Enabled = false;
-                        //disable buttons
-                        sendButton.Enabled = true;
-                        newLibeBut.Enabled = true;
-                        closePort.Enabled = true;
-                        cboPorts.Enabled = false;
                     }
                     else
                         readTextBox.Text = "The port is already used.\n";
@@ -115,13 +115,6 @@ namespace TEMS___Serial_TEST
             {
                 MessageBox.Show("No port Selected!");
             }
-        }
-
-
-        // close ports
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            
         }
 
         //datareceived handler
@@ -171,7 +164,19 @@ namespace TEMS___Serial_TEST
 
         private void button1_Click(object sender, EventArgs e)
         {
-            serialPort.Write("\n");
+            
+            if (relais)
+            {
+                serialPort.Write("#A*");
+                relais = false;
+            }
+            else
+            {
+                serialPort.Write("#B*");
+                relais = true;
+            }
+            
+
         }
 
         private void cboPorts_SelectedIndexChanged(object sender, EventArgs e)
@@ -189,6 +194,7 @@ namespace TEMS___Serial_TEST
             openPort.Enabled = true;
             closePort.Enabled = false;
             cboPorts.Enabled = true;
+            newLibeBut.Enabled = false;
         }
 
 
