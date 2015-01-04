@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SerialForm));
             this.writeTextBox = new System.Windows.Forms.RichTextBox();
             this.readTextBox = new System.Windows.Forms.RichTextBox();
             this.sendButton = new System.Windows.Forms.Button();
@@ -39,8 +40,8 @@
             this.cboPorts = new System.Windows.Forms.ComboBox();
             this.openPort = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.label1 = new System.Windows.Forms.Label();
+            this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -53,7 +54,6 @@
             this.writeTextBox.Size = new System.Drawing.Size(292, 62);
             this.writeTextBox.TabIndex = 0;
             this.writeTextBox.Text = "";
-            this.writeTextBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.writeTextBox_MouseDoubleClick);
             // 
             // readTextBox
             // 
@@ -176,6 +176,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SerialForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.filesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,7 +102,7 @@
             this.ServerConsoleBox.Name = "ServerConsoleBox";
             this.ServerConsoleBox.ReadOnly = true;
             this.ServerConsoleBox.Size = new System.Drawing.Size(514, 276);
-            this.ServerConsoleBox.TabIndex = 2;
+            this.ServerConsoleBox.TabIndex = 4;
             this.ServerConsoleBox.Text = "";
             // 
             // button1
@@ -143,7 +144,7 @@
             this.IpTextBox.MaxLength = 15;
             this.IpTextBox.Name = "IpTextBox";
             this.IpTextBox.Size = new System.Drawing.Size(140, 20);
-            this.IpTextBox.TabIndex = 7;
+            this.IpTextBox.TabIndex = 1;
             this.IpTextBox.Text = "192.168.0.2";
             // 
             // label2
@@ -165,7 +166,7 @@
             0});
             this.portUpDown.Name = "portUpDown";
             this.portUpDown.Size = new System.Drawing.Size(110, 20);
-            this.portUpDown.TabIndex = 5;
+            this.portUpDown.TabIndex = 2;
             this.portUpDown.Value = new decimal(new int[] {
             8080,
             0,
@@ -181,9 +182,9 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TEMS - Manager";
             this.menuStrip1.ResumeLayout(false);

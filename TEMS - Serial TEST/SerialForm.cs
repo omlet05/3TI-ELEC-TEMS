@@ -13,14 +13,15 @@ namespace TEMS___Serial_TEST
 {
     public partial class SerialForm : Form
     {
+        //public variables declaration.
+        //delegate is for SERIAL RX.
         internal delegate void SerialDataReceivedEventHandlerDelegate(object sender, SerialDataReceivedEventArgs e);
         delegate void SetTextCallback(string text);
         private static string TxString = string.Empty;
         string RxString = string.Empty;
-        string localIP = string.Empty;
         bool relais = true;
 
-
+        //initialize form & new event for reception.
         public SerialForm()
         {
             InitializeComponent();
@@ -29,7 +30,8 @@ namespace TEMS___Serial_TEST
 
         
 
-
+        // load FORM1 & populate COM list with available one.
+        // if no COM detected feature will be disabled (in catch).
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -73,6 +75,8 @@ namespace TEMS___Serial_TEST
             newLibeBut.Enabled = false;
         }     
 
+        //event for openport button clicking
+        //will open connection if COM selected in the list
         private void openPort_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(WichCom.Text))
@@ -117,7 +121,7 @@ namespace TEMS___Serial_TEST
             }
         }
 
-        //datareceived handler
+        //thread to receive data
         private void serialPortRead_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             try
@@ -132,36 +136,31 @@ namespace TEMS___Serial_TEST
                 MessageBox.Show("Timeout !");
             }
         }
+
+        //set text in console
+        // IN: string
         private void SetText(string text)
         {
             this.readTextBox.Text += text+"\n";
         }
-        // Read/Update to textbox
-        private void DisplayText(object s, EventArgs e)
-        {
-            readTextBox.AppendText(RxString+"\n");
-        }
 
-        // send message over serial COM
+
+        //Send message over COM by pressing button.
         private void sendButton_Click(object sender, EventArgs e)
         {
             TxString = writeTextBox.Text;
             serialPort.Write(TxString);
         }
 
-        private void writeTextBox_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            TxString = writeTextBox.Text;
-            serialPort.Write(TxString);
-        }
 
-
+        //flush console & command prompt
         private void clearButton_Click(object sender, EventArgs e)
         {
             readTextBox.Text = String.Empty;
             writeTextBox.Text = String.Empty;
         }
 
+        //switching relay by #A* & #b* send.
         private void button1_Click(object sender, EventArgs e)
         {
             
@@ -179,6 +178,7 @@ namespace TEMS___Serial_TEST
 
         }
 
+        //Event when a COM is selected in the list.
         private void cboPorts_SelectedIndexChanged(object sender, EventArgs e)
         {
             serialPort.PortName = Convert.ToString(cboPorts.Text);
@@ -186,6 +186,7 @@ namespace TEMS___Serial_TEST
         }
 
 
+        //Event when closing the port
         private void closePort_Click(object sender, EventArgs e)
         {
             serialPort.Close();

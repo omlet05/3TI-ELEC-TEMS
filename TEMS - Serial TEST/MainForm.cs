@@ -17,6 +17,7 @@ namespace TEMS___Serial_TEST
 {
     public partial class MainForm : Form
     {
+        //public variable.
         Thread ClientThread;
         string readData = null, sendData = null;
         int i;
@@ -27,20 +28,31 @@ namespace TEMS___Serial_TEST
             InitializeComponent();
         }
 
+        //about click event
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SetText("TEMS - about\n");
+        {                   
+            SetText("\n--------------\n");
+            SetText("\n TEMS - MANAGER\n");
+            SetText("   Version 1.0\n");
+            SetText("   Team:\n");
+            SetText("      *Corentin Blanche\n");
+            SetText("      *Catherine Arnaud\n");
+            SetText("      *Degueldre Kevin\n");
+            SetText("      *Lobet Mathieu\n\n");
+
+            SetText("GIT: https://github.com/omlet05/3TI-ELEC-TEMS \n");
+            SetText("\n--------------\n");
         }
 
 
-
+        //serial form creation from button
         private void serialToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form frm = new SerialForm();
             frm.Show();
         }
 
-
+        //trying to connect to client by pressing "add client" button.
         private void button1_Click(object sender, EventArgs e)
         {
             string ip = IpTextBox.Text;
@@ -52,7 +64,7 @@ namespace TEMS___Serial_TEST
                 Client(ip, port);       
         }
 
-
+        //creating the new client thread
         private void Client(string ip, int port) {        
             
             ClientThread = new Thread(new ThreadStart(() => NewClient(ip, port)));
@@ -61,6 +73,8 @@ namespace TEMS___Serial_TEST
             
         }
 
+        //checking if ip and port in program are good
+        // IN: IP to check
         private bool checkIfCompletedOrNotBlank(String ip){
             bool toReturn;
             IPAddress iptest;
@@ -71,6 +85,8 @@ namespace TEMS___Serial_TEST
             return toReturn;
         }
 
+        //thread for one client
+        // IN: valid IP & PORT
         private void NewClient(String ip, int port)
         {
 
@@ -91,6 +107,8 @@ namespace TEMS___Serial_TEST
             }
         }
 
+        //INPUT OUTPUT from client message
+        // IN: valide tcp client OUT: n/a
         private void MessageIO(TcpClient clientSocket)
         {
             NetworkStream clientStream = clientSocket.GetStream();
@@ -104,16 +122,18 @@ namespace TEMS___Serial_TEST
                 {  
                     if (clientStream.DataAvailable)
                     {
+                        //reception of packet from client.
                         buffSize = clientSocket.ReceiveBufferSize;
                         clientStream.Read(inStream, 0, 4069);
                         string returndata = "";
                         returndata = System.Text.Encoding.ASCII.GetString(inStream);
                         readData = "" + returndata;
-                        msgsplittcp();
+                        msg();
                         inStream = new byte[4069];
 
                         if (sendData != null)
                         {
+                            //if sendData is not null => send it to client. 
                             byte[] outStream = System.Text.Encoding.ASCII.GetBytes(sendData);
                             clientStream.Write(outStream, 0, outStream.Length);
                             clientStream.Flush();
@@ -128,17 +148,11 @@ namespace TEMS___Serial_TEST
                 }
             }
         }
-        private void msg()
-        {
-            if (this.InvokeRequired)
-                this.Invoke(new MethodInvoker(msg));
-            else
-            {
-                SetText(Environment.NewLine + ">> " + readData);
-            }
-        }
 
-        private int msgsplittcp()
+
+        //Take the packet in good order for output in console
+        // with TEMS matching in first packet
+        private int msg()
         {
             
             if(readData.Contains("TEMS"))
@@ -184,19 +198,20 @@ namespace TEMS___Serial_TEST
                 this.Invoke(d, new object[] { txt });
             }
             else
-            {
-                
-                    this.ServerConsoleBox.AppendText(txt);
-                    this.ServerConsoleBox.ScrollToCaret();
-
+            {  
+                this.ServerConsoleBox.AppendText(txt);
+                //autoscrolling to the bottom of the console
+                this.ServerConsoleBox.ScrollToCaret();
             }
         }
 
+        //closing event
         private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Exit();
         }
 
+        //closing event
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
