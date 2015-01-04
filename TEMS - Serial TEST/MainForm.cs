@@ -35,10 +35,10 @@ namespace TEMS___Serial_TEST
             SetText("\n TEMS - MANAGER\n");
             SetText("   Version 1.0\n");
             SetText("   Team:\n");
-            SetText("      *Corentin Blanche\n");
-            SetText("      *Catherine Arnaud\n");
-            SetText("      *Degueldre Kevin\n");
-            SetText("      *Lobet Mathieu\n\n");
+            SetText("      * Corentin Blanche\n");
+            SetText("      * Catherine Arnaud\n");
+            SetText("      * Degueldre Kevin\n");
+            SetText("      * Lobet Mathieu\n\n");
 
             SetText("GIT: https://github.com/omlet05/3TI-ELEC-TEMS \n");
             SetText("\n--------------\n");
@@ -59,7 +59,7 @@ namespace TEMS___Serial_TEST
             int port = Convert.ToInt32(portUpDown.Value);
            
             if (!checkIfCompletedOrNotBlank(ip))
-                SetText("IP ou port non valide.\n");
+                SetText("\nErreur: IP ou port non valide.\n");
             else
                 Client(ip, port);       
         }
@@ -95,7 +95,7 @@ namespace TEMS___Serial_TEST
             {
                 
                 clientSocket.Connect(ip, port);
-                SetText("Connected to new TEMS Server on"+ip+":"+port+".\n");
+                SetText("\nConnected to new TEMS Server on "+ip+":"+port+".\n");
                 Thread clientThread = new Thread(() => MessageIO(clientSocket));
                 clientThread.IsBackground = true;
                 clientThread.Start();

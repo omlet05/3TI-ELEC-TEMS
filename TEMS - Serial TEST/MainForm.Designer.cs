@@ -145,7 +145,7 @@
             this.IpTextBox.Name = "IpTextBox";
             this.IpTextBox.Size = new System.Drawing.Size(140, 20);
             this.IpTextBox.TabIndex = 1;
-            this.IpTextBox.Text = "192.168.0.2";
+            this.IpTextBox.Text = "10.10.10.2";
             // 
             // label2
             // 
@@ -186,7 +186,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TEMS - Manager";
+            this.Text = "TEMS Manager - TCP Client";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

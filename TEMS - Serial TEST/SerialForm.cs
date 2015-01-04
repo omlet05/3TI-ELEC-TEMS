@@ -103,7 +103,7 @@ namespace TEMS___Serial_TEST
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Erreur durant l'ouverture du port: {0}", ex.Message);
+                            MessageBox.Show("Error when opening the " + serialPort.PortName + " port: " + ex.Message);
                         }
 
                     }
@@ -121,7 +121,7 @@ namespace TEMS___Serial_TEST
             }
         }
 
-        //thread to receive data
+        //thread to receive data invoke the callback to print data in the console
         private void serialPortRead_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             try
@@ -129,11 +129,18 @@ namespace TEMS___Serial_TEST
                 RxString = serialPort.ReadExisting();
                 if (RxString != String.Empty)
                 {
-                    this.BeginInvoke(new SetTextCallback(SetText), new object[] { RxString });
+                    this.BeginInvoke(new SetTextCallback(SetText), new object[] { "\n"+RxString });
                 }
             }
             catch (System.TimeoutException) {
                 MessageBox.Show("Timeout !");
+                serialPort.Close();
+                sendButton.Enabled = false;
+                newLibeBut.Enabled = false;
+                openPort.Enabled = true;
+                closePort.Enabled = false;
+                cboPorts.Enabled = true;
+                newLibeBut.Enabled = false;
             }
         }
 
