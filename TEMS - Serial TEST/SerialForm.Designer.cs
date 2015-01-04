@@ -43,16 +43,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // writeTextBox
             // 
-            this.writeTextBox.Location = new System.Drawing.Point(111, 205);
+            this.writeTextBox.HideSelection = false;
+            this.writeTextBox.Location = new System.Drawing.Point(99, 18);
             this.writeTextBox.Name = "writeTextBox";
             this.writeTextBox.Size = new System.Drawing.Size(292, 62);
-            this.writeTextBox.TabIndex = 0;
+            this.writeTextBox.TabIndex = 7;
             this.writeTextBox.Text = "";
             // 
             // readTextBox
@@ -61,7 +63,7 @@
             this.readTextBox.Name = "readTextBox";
             this.readTextBox.ReadOnly = true;
             this.readTextBox.Size = new System.Drawing.Size(378, 169);
-            this.readTextBox.TabIndex = 1;
+            this.readTextBox.TabIndex = 4;
             this.readTextBox.Text = "";
             // 
             // sendButton
@@ -69,7 +71,7 @@
             this.sendButton.Location = new System.Drawing.Point(397, 18);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(74, 28);
-            this.sendButton.TabIndex = 2;
+            this.sendButton.TabIndex = 8;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
@@ -79,17 +81,17 @@
             this.clearButton.Location = new System.Drawing.Point(397, 52);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(74, 28);
-            this.clearButton.TabIndex = 4;
+            this.clearButton.TabIndex = 9;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
             // newLibeBut
             // 
-            this.newLibeBut.Location = new System.Drawing.Point(6, 31);
+            this.newLibeBut.Location = new System.Drawing.Point(9, 19);
             this.newLibeBut.Name = "newLibeBut";
             this.newLibeBut.Size = new System.Drawing.Size(74, 37);
-            this.newLibeBut.TabIndex = 6;
+            this.newLibeBut.TabIndex = 5;
             this.newLibeBut.Text = "Switching Relay";
             this.newLibeBut.UseVisualStyleBackColor = true;
             this.newLibeBut.Click += new System.EventHandler(this.button1_Click);
@@ -99,7 +101,7 @@
             this.closePort.Location = new System.Drawing.Point(6, 46);
             this.closePort.Name = "closePort";
             this.closePort.Size = new System.Drawing.Size(72, 21);
-            this.closePort.TabIndex = 17;
+            this.closePort.TabIndex = 1;
             this.closePort.Text = "ClosePort";
             this.closePort.UseVisualStyleBackColor = true;
             this.closePort.Click += new System.EventHandler(this.closePort_Click);
@@ -110,7 +112,7 @@
             this.WichCom.Name = "WichCom";
             this.WichCom.ReadOnly = true;
             this.WichCom.Size = new System.Drawing.Size(72, 20);
-            this.WichCom.TabIndex = 16;
+            this.WichCom.TabIndex = 2;
             // 
             // cboPorts
             // 
@@ -118,7 +120,7 @@
             this.cboPorts.Location = new System.Drawing.Point(6, 133);
             this.cboPorts.Name = "cboPorts";
             this.cboPorts.Size = new System.Drawing.Size(72, 21);
-            this.cboPorts.TabIndex = 15;
+            this.cboPorts.TabIndex = 3;
             this.cboPorts.SelectedIndexChanged += new System.EventHandler(this.cboPorts_SelectedIndexChanged);
             // 
             // openPort
@@ -126,7 +128,7 @@
             this.openPort.Location = new System.Drawing.Point(6, 19);
             this.openPort.Name = "openPort";
             this.openPort.Size = new System.Drawing.Size(72, 21);
-            this.openPort.TabIndex = 14;
+            this.openPort.TabIndex = 0;
             this.openPort.Text = "OpenPort";
             this.openPort.UseVisualStyleBackColor = true;
             this.openPort.Click += new System.EventHandler(this.openPort_Click);
@@ -156,6 +158,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.writeTextBox);
             this.groupBox2.Controls.Add(this.newLibeBut);
             this.groupBox2.Controls.Add(this.sendButton);
             this.groupBox2.Controls.Add(this.clearButton);
@@ -166,16 +170,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Command:";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(9, 62);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(74, 27);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Call Test";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // SerialForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 294);
             this.Controls.Add(this.readTextBox);
-            this.Controls.Add(this.writeTextBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SerialForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -186,6 +199,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.MaximizeBox = false;
 
         }
 
@@ -204,6 +218,7 @@
         private System.IO.Ports.SerialPort serialPort;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button1;
     }
 }
 

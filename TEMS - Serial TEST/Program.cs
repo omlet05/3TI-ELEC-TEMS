@@ -23,7 +23,7 @@ namespace TEMS___Serial_TEST
 
             }
             catch (Exception e){
-                Console.WriteLine("Error..... " + e.StackTrace);
+                Console.WriteLine("Error..." + e.StackTrace);
             }
         }
     }

@@ -155,31 +155,34 @@ namespace TEMS___Serial_TEST
         private int msg()
         {
             
-            if(readData.Contains("TEMS"))
+            if(readData.Contains("TEMS")) // if TEMS is include set up the i to 0 to prevent bad packet matching.
                 i = 0;
             
             switch (i)
             {
-                case 0:
+                case 0: // new line & NetBios Name
                     SetText(Environment.NewLine + ">>" + readData + " ");
                     i++;
                     break;
-                case 1:
+                case 1: // Current temperature
                     SetText(" Current:" + readData + " ");
                     i++;
                     break;
-                case 2:
-
+                case 2:// Maximum
                     SetText(" Max:" + readData + " ");
                     i++;
                     break;
 
-                case 3:
+                case 3: // Minimum
                     SetText(" Min:" + readData + " ");
                     i++;
                     break;
+                case 4: //Luminosity
+                    SetText(" Lum:" + readData + " ");
+                    i++;
+                    break;
                 default:
-                    SetText(readData + "\n");
+                    SetText("  " + readData + "\n");
                     break;
             }
             readData = "";

@@ -148,7 +148,11 @@ namespace TEMS___Serial_TEST
         // IN: string
         private void SetText(string text)
         {
-            this.readTextBox.Text += text+"\n";
+
+            this.readTextBox.Text += text;
+            readTextBox.AppendText("\n");
+            readTextBox.ScrollToCaret();
+            
         }
 
 
@@ -203,6 +207,11 @@ namespace TEMS___Serial_TEST
             closePort.Enabled = false;
             cboPorts.Enabled = true;
             newLibeBut.Enabled = false;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            serialPort.Write("#S*");
         }
 
 
