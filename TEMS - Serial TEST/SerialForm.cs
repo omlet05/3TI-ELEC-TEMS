@@ -73,6 +73,7 @@ namespace TEMS___Serial_TEST
             closePort.Enabled = false;
             cboPorts.Enabled = true;
             newLibeBut.Enabled = false;
+            btnCall.Enabled = false;
         }     
 
         //event for openport button clicking
@@ -100,6 +101,7 @@ namespace TEMS___Serial_TEST
                             closePort.Enabled = true;
                             cboPorts.Enabled = false;
                             newLibeBut.Enabled = true;
+                            btnCall.Enabled = true;
                         }
                         catch (Exception ex)
                         {
@@ -141,6 +143,7 @@ namespace TEMS___Serial_TEST
                 closePort.Enabled = false;
                 cboPorts.Enabled = true;
                 newLibeBut.Enabled = false;
+                btnCall.Enabled = false;
             }
         }
 
@@ -207,6 +210,7 @@ namespace TEMS___Serial_TEST
             closePort.Enabled = false;
             cboPorts.Enabled = true;
             newLibeBut.Enabled = false;
+            btnCall.Enabled = false;
         }
 
         private void button1_Click_1(object sender, EventArgs e)

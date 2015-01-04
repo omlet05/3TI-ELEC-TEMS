@@ -43,7 +43,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCall = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -158,7 +158,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.btnCall);
             this.groupBox2.Controls.Add(this.writeTextBox);
             this.groupBox2.Controls.Add(this.newLibeBut);
             this.groupBox2.Controls.Add(this.sendButton);
@@ -170,15 +170,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Command:";
             // 
-            // button1
+            // btnCall
             // 
-            this.button1.Location = new System.Drawing.Point(9, 62);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(74, 27);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Call Test";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnCall.Location = new System.Drawing.Point(9, 62);
+            this.btnCall.Name = "btnCall";
+            this.btnCall.Size = new System.Drawing.Size(74, 27);
+            this.btnCall.TabIndex = 6;
+            this.btnCall.Text = "Call Test";
+            this.btnCall.UseVisualStyleBackColor = true;
+            this.btnCall.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // SerialForm
             // 
@@ -190,6 +190,7 @@
             this.Controls.Add(this.groupBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "SerialForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -199,7 +200,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.MaximizeBox = false;
 
         }
 
@@ -218,7 +218,7 @@
         private System.IO.Ports.SerialPort serialPort;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCall;
     }
 }
 
