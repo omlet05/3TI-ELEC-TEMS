@@ -18,13 +18,13 @@ C:\Users\Om\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Seri
 C:\Users\Om\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\obj\Release\TEMS___Serial_TEST.Form2.resources
 C:\Users\Om\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\obj\Release\TEMS___Serial_TEST.Properties.Resources.resources
 C:\Users\Om\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\obj\Release\TEMS - Serial TEST.csproj.GenerateResource.Cache
-C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\bin\Release\TEMS - Serial TEST.exe.config
-C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\obj\Release\TEMS - Serial TEST.exe
-C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\obj\Release\TEMS - Serial TEST.pdb
-C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\bin\Release\TEMS - Serial TEST.exe
-C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\bin\Release\TEMS - Serial TEST.pdb
 C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\obj\Release\TEMS - Serial TEST.csprojResolveAssemblyReference.cache
 C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\obj\Release\TEMS___Serial_TEST.MainForm.resources
 C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\obj\Release\TEMS___Serial_TEST.SerialForm.resources
-C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\obj\Release\TEMS___Serial_TEST.Properties.Resources.resources
 C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\obj\Release\TEMS - Serial TEST.csproj.GenerateResource.Cache
+C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\bin\Release\TEMS - MANAGER.exe.config
+C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\bin\Release\TEMS - MANAGER.exe
+C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\bin\Release\TEMS - MANAGER.pdb
+C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\obj\Release\TEMS___Manager.Properties.Resources.resources
+C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\obj\Release\TEMS - MANAGER.exe
+C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\obj\Release\TEMS - MANAGER.pdb

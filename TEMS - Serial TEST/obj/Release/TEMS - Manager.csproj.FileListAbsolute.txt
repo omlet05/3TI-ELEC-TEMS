@@ -1,0 +1,3 @@
+C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\bin\Release\TEMS - MANAGER.exe.config
+C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\obj\Release\TEMS - MANAGER.exe
+C:\Users\vmw7\Documents\Visual Studio 2013\Projects\TEMS - Serial TEST\TEMS - Serial TEST\obj\Release\TEMS - MANAGER.pdb
