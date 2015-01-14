@@ -62,8 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="client.cs" />
-    <Compile Include="Client_2.cs" />
     <Compile Include="SerialForm.cs">
       <SubType>Form</SubType>
     </Compile>
